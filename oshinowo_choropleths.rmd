@@ -1,0 +1,93 @@
+---
+author: "Oshinowo_Choropleths"
+date: 12/1/2020
+output: html_document
+---
+
+# Temitope Oshinowo
+# SML 310 Final Project
+
+### Choropleths to better understand the data. I observed the number of cases, deaths, and beds per 1,000, as well as the median household income, all per county.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#install.packages("choroplethr")
+#install.packages("choroplethrMaps")
+library(tidyr)
+library(magrittr)
+library(data.table)
+library(ggplot2)  # For map
+library(dplyr)    # For summarizing
+library(tidyr)    # For reshaping
+library(choroplethr)
+library(choroplethrMaps)
+library(corrgram)
+```
+
+
+```{r}
+# County Cases choropleth
+#source: https://arilamstein.com/us-county-choropleths/
+
+# Load in the county confirmed cases data from the csv
+cases_Data_full <- read.csv("C:/Users/Temi/Downloads/select_counties_confirmed.csv")
+cases_df <- data.frame(cases_Data_full)
+mean(cases_df[["value"]])
+
+choro_cases = CountyChoropleth$new(cases_df)
+choro_cases$title = "US Covid Cases Per 1000 by County"
+choro_cases$ggplot_scale = scale_fill_brewer(name="Cases Per 1000 (Mean = 15.4)", palette=2, drop=FALSE)
+choro_cases$render()
+choro_cases
+```
+
+
+      
+```{r}
+# County Deaths choropleth
+
+# Load in the county confirmed deaths data from the csv
+deaths_Data_full <- read.csv("C:/Users/Temi/Downloads/select_counties_deaths.csv")
+deaths_df <- data.frame(deaths_Data_full)
+mean(deaths_df[["value"]])
+
+choro_deaths = CountyChoropleth$new(deaths_df)
+choro_deaths$title = "US Covid Deaths Per 1000 by County"
+choro_deaths$ggplot_scale = scale_fill_brewer(name="Deaths Per 1000 (Mean = 0.358)", palette=2, drop=FALSE)
+choro_deaths$render()
+choro_deaths
+```
+
+```{r}
+#a number of beds choropleth
+
+# Load in the csv
+beds_Data_full <- read.csv("C:/Users/Temi/Downloads/bed_count.csv")
+beds_df <- data.frame(beds_Data_full)
+mean(beds_df[["value"]])
+
+
+choro_beds = CountyChoropleth$new(beds_df)
+choro_beds$title = "US Number of Beds Per 1000 by County"
+choro_beds$ggplot_scale = scale_fill_brewer(name="Beds Per 1000 (Mean = 1.475)", palette=2, direction=1, drop=FALSE)
+choro_beds$render()
+choro_beds
+```
+
+```{r}
+#Median household income choropleth
+
+# Load in the csv
+houses_Data_full <- read.csv("C:/Users/Temi/Downloads/median_house_income.csv")
+houses_df <- data.frame(houses_Data_full)
+colnames(houses_df) <- c("region","value") #rename columns as desired 
+#mean(houses_df[["value"]])
+
+
+choro_houses = CountyChoropleth$new(houses_df)
+choro_houses$title = "Median Household Income by County"
+choro_houses$ggplot_scale = scale_fill_brewer(name="Med House Inc. (Mean=$52,909)", palette=2, direction=1, drop=FALSE)
+choro_houses$render()
+choro_houses
+```
