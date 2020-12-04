@@ -15,6 +15,9 @@ This project contained my main paper, PowerPoint presentation, and code (in both
 It also has a folder for the data I cleaned (Data_I_Cleaned), csvs I used to make the choropleths, 
 and csvs I generated from my running my Jupyter code. 
 ```
+
+
+```
 Csvs_for_choropleths: Folder with csvs which I used to make my choropleths (needed region, value format for R)
 
 Data_I_Cleaned: Folder with data I pulled from my sources as listed in the final paper
@@ -36,4 +39,7 @@ Oshinowo_Final_Research_Project.inpyb: Jupyter file with code
 
 Oshinowo_Paper_Final_Research_Project.pdf: Final Paper 
 
+Oshinowo_SML_Project_Presentation.pptx: PowerPoint presentation for project
+
 select_counties.csv: counties I performed all my analysis on , no values NaN
+```
